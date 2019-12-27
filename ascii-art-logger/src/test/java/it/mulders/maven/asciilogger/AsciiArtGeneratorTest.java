@@ -29,9 +29,11 @@ class AsciiArtGeneratorTest {
     void print_hello() throws IOException {
         // Arrange
         final List<String> expectedLines = readExpectedOutput("/hello.txt");
+        final String expectedOutput = String.join(System.getProperty("line.separator"), expectedLines);
 
         // Act
         final List<String> lines = generator.generate("Hello");
+        final String actualOutput = String.join(System.getProperty("line.separator"), lines).replace(' ', '.');
 
         /* // if you need to re-generate the txt file, use these lines:
         System.out.println("-");
@@ -40,11 +42,6 @@ class AsciiArtGeneratorTest {
          */
 
         // Assert
-        for (int i = 0; i < expectedLines.size(); i++) {
-            // Replace spaces with . so it's easier to verify
-            final String expectedLine = expectedLines.get(i).replace(' ', '.');
-            final String actualLine = lines.get(i).replace(' ', '.');
-            assertThat(expectedLine).as("Line %d", i).isEqualTo(actualLine);
-        }
+        assertThat(actualOutput).isEqualTo(expectedOutput);
     }
 }
