@@ -6,6 +6,13 @@ workflows:
     jobs:
       - build:
           context: SonarCloud
+  release:
+    jobs:
+      - release:
+          context: Bintray
+          filters:
+            tags:
+              only: /^v.*/
   nightly:
     triggers:
       - schedule:
@@ -49,3 +56,12 @@ jobs:
       - store_test_results:
           path: ~/junit
 
+  release:
+    docker:
+      - image: circleci/openjdk:8-jdk
+    steps:
+      - checkout
+      - run:
+          name: Build software
+          command: |
+            mvn deploy

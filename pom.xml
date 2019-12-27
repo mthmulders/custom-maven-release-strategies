@@ -7,7 +7,13 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Custom strategies for the Maven Release Plugin</name>
+    <name>Custom Release Strategies</name>
+    <description>Custom strategies for the Maven Release Plugin</description>
+
+    <scm>
+        <connection>scm:git:https://github.com/mthmulders/custom-maven-release-strategies.git</connection>
+        <developerConnection>scm:git:git@github.com:mthmulders/custom-maven-release-strategies.git</developerConnection>
+    </scm>
 
     <modules>
         <module>ascii-art-logger</module>
@@ -119,5 +125,24 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <tagNameFormat>v@{project.version}</tagNameFormat>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray</id>
+            <url>https://api.bintray.com/maven/mthmulders/open-source/custom-release-strategies/;publish=1</url>
+        </repository>
+    </distributionManagement>
 </project>
