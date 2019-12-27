@@ -4,7 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.mulders.maven</groupId>
     <artifactId>custom-maven-release-strategies</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Custom strategies for the Maven Release Plugin</name>
+
+    <modules>
+        <module>ascii-art-logger</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,5 +22,102 @@
         <sonar.projectKey>mthmulders_custom-maven-release-strategies</sonar.projectKey>
         <sonar.organization>mthmulders-github</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
+        <junit.jupiter.version>5.5.2</junit.jupiter.version>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.maven.release</groupId>
+                <artifactId>maven-release-api</artifactId>
+                <version>3.0.0-M1</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.13.2</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.10.19</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.plexus</groupId>
+                    <artifactId>plexus-component-metadata</artifactId>
+                    <version>2.1.0</version>
+                    <executions>
+                        <!-- Processes Plexus annotations in Java classes to generate META-INF/plexus/components.xml -->
+                        <execution>
+                            <id>generate-metadata</id>
+                            <goals>
+                                <goal>generate-metadata</goal>
+                            </goals>
+                            <configuration>
+                                <extractors>
+                                    <extractor>class</extractor>
+                                </extractors>
+                            </configuration>
+                        </execution>
+                        <!-- Merge generated META-INF/plexus/components.xml with hand-written fragments -->
+                        <execution>
+                            <id>merge-metadata</id>
+                            <phase>process-classes</phase>
+                            <goals>
+                                <goal>merge-metadata</goal>
+                            </goals>
+                            <configuration>
+                                <output>${project.build.outputDirectory}/META-INF/plexus/components.xml</output>
+                                <descriptors>
+                                    <descriptor>${project.build.outputDirectory}/META-INF/plexus/components.xml</descriptor>
+                                    <descriptor>src/main/components-fragment.xml</descriptor>
+                                </descriptors>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>
