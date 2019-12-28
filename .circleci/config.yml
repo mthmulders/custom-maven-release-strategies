@@ -46,8 +46,7 @@ jobs:
       - run:
           name: Build software
           command: |
-            mvn \
-              clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
+            mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar
       - run:
           name: Save test results
           command: |
