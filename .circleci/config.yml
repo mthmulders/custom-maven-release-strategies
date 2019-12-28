@@ -36,6 +36,8 @@ jobs:
       - run:
           name: Install fonts
           command: |
+            sudo sh -c 'echo "deb http://deb.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list'
+            sudo sh -c 'echo "deb http://deb.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list'
             sudo apt-get update
             sudo apt-get install -y ttf-mscorefonts-installer
       - restore_cache:
@@ -71,6 +73,8 @@ jobs:
       - run:
           name: Install fonts
           command: |
+            sudo sh -c 'echo "deb http://deb.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list'
+            sudo sh -c 'echo "deb http://deb.debian.org/debian stretch main contrib non-free" >> /etc/apt/sources.list'
             sudo apt-get update
             sudo apt-get install -y ttf-mscorefonts-installer
       - run:
