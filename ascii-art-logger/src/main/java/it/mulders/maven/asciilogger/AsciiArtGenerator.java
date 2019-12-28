@@ -28,8 +28,6 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static java.awt.RenderingHints.KEY_TEXT_ANTIALIASING;
-import static java.awt.RenderingHints.VALUE_TEXT_ANTIALIAS_ON;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
@@ -86,7 +84,6 @@ public class AsciiArtGenerator {
 
     private Graphics2D createGraphicsObject(final Graphics graphics) {
         graphics.setFont(new Font("Courier New", Font.PLAIN, 24));
-        ((Graphics2D) graphics).setRenderingHint(KEY_TEXT_ANTIALIASING, VALUE_TEXT_ANTIALIAS_ON);
         return (Graphics2D) graphics;
     }
 }

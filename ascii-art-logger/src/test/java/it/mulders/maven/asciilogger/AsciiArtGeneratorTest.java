@@ -35,11 +35,10 @@ class AsciiArtGeneratorTest {
         final List<String> lines = generator.generate("Hello");
         final String actualOutput = String.join(System.getProperty("line.separator"), lines).replace(' ', '.');
 
-        /* // if you need to re-generate the txt file, use these lines:
-        System.out.println("-");
-        lines.forEach(line -> System.out.println(line.replace(' ', '.')));
-        System.out.println("-");
-         */
+        // if you need to re-generate the txt file, use these lines:
+//        System.out.println("-");
+//        lines.forEach(line -> System.out.println(line.replace(' ', '.')));
+//        System.out.println("-");
 
         // Assert
         assertThat(actualOutput).isEqualTo(expectedOutput);
