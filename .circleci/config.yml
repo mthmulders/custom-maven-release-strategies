@@ -65,6 +65,7 @@ jobs:
       - run:
           name: Configure Bintray repo
           command: |
+            mkdir ~/.m2
             cat << EOF > ~/.m2/settings.xml
             <settings>
               <servers>
