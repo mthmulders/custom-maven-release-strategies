@@ -63,6 +63,20 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Configure Bintray repo
+          command: |
+            cat << EOF > ~/.m2/settings.xml
+            <settings>
+              <servers>
+                <server>
+                  <id>bintray</id>
+                  <username>mthmulders</username>
+                  <password>${BINTRAY_API_KEY}</password>
+                </server>
+              </servers>
+            </settings>
+            EOF
+      - run:
           name: Build software
           command: |
-            mvn deploy
+            mvn source:jar deploy
