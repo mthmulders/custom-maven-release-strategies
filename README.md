@@ -8,7 +8,7 @@
 
 ## Using it
 
-Add the following to `pom.xml`:
+Add the following to the root of your projects `pom.xml`:
 
 ```xml
 <repositories>
@@ -31,4 +31,24 @@ Add the following to `pom.xml`:
         <url>https://dl.bintray.com/mthmulders/open-source</url>
     </pluginRepository>
 </pluginRepositories>
+```
+
+Then configure the Maven Release Plugin as follows:
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-release-plugin</artifactId>
+    <version>3.0.0-M1</version><!-- You need at least version 3.0.0-M1! -->
+    <dependencies>
+        <dependency>
+            <groupId>it.mulders.maven</groupId>
+            <artifactId>ascii-art-logger</artifactId>
+            <version>0.0.3</version>
+        </dependency>
+    </dependencies>
+    <configuration>
+        <releaseStrategyId>ascii-art-enhanced-strategy</releaseStrategyId>
+    </configuration>
+</plugin>
 ```
