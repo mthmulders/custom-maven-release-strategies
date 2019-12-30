@@ -19,6 +19,14 @@
         <module>ascii-art-logger</module>
     </modules>
 
+    <licenses>
+        <license>
+            <distribution>repo</distribution>
+            <name>Apache License 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
