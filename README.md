@@ -11,16 +11,6 @@
 Add the following to the root of your projects `pom.xml`:
 
 ```xml
-<repositories>
-    <repository>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-        <id>bintray-mthmulders-open-source</id>
-        <name>bintray</name>
-        <url>https://dl.bintray.com/mthmulders/open-source</url>
-    </repository>
-</repositories>
 <pluginRepositories>
     <pluginRepository>
         <snapshots>
