@@ -26,6 +26,6 @@ import org.codehaus.plexus.component.annotations.Component;
 public class AsciiArtPrepareDoneLoggingPhase extends AbstractAsciiArtLoggingPhase {
     public AsciiArtPrepareDoneLoggingPhase() {
         super();
-        this.message = "Preparing done!";
+        this.message = "Prepared!";
     }
 }

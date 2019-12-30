@@ -26,6 +26,6 @@ import org.codehaus.plexus.component.annotations.Component;
 public class AsciiArtPerformDoneLoggingPhase extends AbstractAsciiArtLoggingPhase {
     public AsciiArtPerformDoneLoggingPhase() {
         super();
-        this.message = "Release done!";
+        this.message = "Released!";
     }
 }

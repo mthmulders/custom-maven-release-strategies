@@ -26,6 +26,6 @@ import org.codehaus.plexus.component.annotations.Component;
 public class AsciiArtBranchDoneLoggingPhase extends AbstractAsciiArtLoggingPhase {
     public AsciiArtBranchDoneLoggingPhase() {
         super();
-        this.message = "Branching done!";
+        this.message = "Branched!";
     }
 }
