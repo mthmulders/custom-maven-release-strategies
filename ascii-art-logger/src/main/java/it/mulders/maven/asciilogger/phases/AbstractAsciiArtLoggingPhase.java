@@ -62,7 +62,7 @@ public abstract class AbstractAsciiArtLoggingPhase extends AbstractReleasePhase 
     {
         final ReleaseResult result = new ReleaseResult();
         result.setResultCode(SUCCESS);
-        asciiArtGenerator.generate(this.message).forEach(line -> logInfo(result, line));
+        logInfo(result, "Not printing banner because dry-run");
         return result;
     }
 }

@@ -12,11 +12,16 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.List;
 
+import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class AsciiArtPerformDoneLoggingPhaseTest {
+    private static final String BANNER = "Banner";
+
     private AsciiArtGenerator asciiArtGenerator = mock(AsciiArtGenerator.class);
     private Logger logger = mock(Logger.class);
 
@@ -26,6 +31,7 @@ class AsciiArtPerformDoneLoggingPhaseTest {
     public void injectMocks() {
         phase.asciiArtGenerator = asciiArtGenerator;
         phase.enableLogging(logger);
+        when(asciiArtGenerator.generate(anyString())).thenReturn(singletonList(BANNER));
     }
 
     @Test
@@ -49,14 +55,12 @@ class AsciiArtPerformDoneLoggingPhaseTest {
         final ReleaseEnvironment environment = mock(ReleaseEnvironment.class);
         final List<MavenProject> projects = Collections.emptyList();
 
-        final String message = "Banner";
-        when(asciiArtGenerator.generate(anyString())).thenReturn(Collections.singletonList(message));
-
         // Act
-        phase.execute(descriptor, environment, projects);
+        final ReleaseResult result = phase.execute(descriptor, environment, projects);
 
         // Assert
-        verify(logger).info(message);
+        verify(logger).info(BANNER);
+        assertThat(result.getOutput().split("\\n")).hasSizeGreaterThan(0);
     }
 
     @Test
@@ -81,9 +85,9 @@ class AsciiArtPerformDoneLoggingPhaseTest {
         final List<MavenProject> projects = Collections.emptyList();
 
         // Act
-        phase.execute(descriptor, environment, projects);
+        final ReleaseResult result = phase.simulate(descriptor, environment, projects);
 
         // Assert
-        verify(logger, never()).info(anyString());
+        assertThat(result.getOutput().split("\\n")).containsOnly("[INFO] Not printing banner because dry-run");
     }
 }
