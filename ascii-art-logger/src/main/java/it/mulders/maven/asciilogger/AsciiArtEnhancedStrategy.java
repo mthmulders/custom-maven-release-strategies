@@ -7,7 +7,7 @@ import org.codehaus.plexus.component.annotations.Requirement;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component(role = Strategy.class, hint = "ASCII art enhanced strategy")
+@Component(role = Strategy.class, description = "ASCII art enhanced strategy", hint = "ascii-art-enhanced-strategy")
 public class AsciiArtEnhancedStrategy implements Strategy {
     @Requirement(hint = "default")
     Strategy defaultStrategy;
