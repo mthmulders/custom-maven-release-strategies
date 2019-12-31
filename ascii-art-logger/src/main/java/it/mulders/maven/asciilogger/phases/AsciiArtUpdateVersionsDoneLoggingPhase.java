@@ -19,10 +19,11 @@ package it.mulders.maven.asciilogger.phases;
  * under the License.
  */
 
-import org.apache.maven.shared.release.phase.ReleasePhase;
-import org.codehaus.plexus.component.annotations.Component;
+import javax.inject.Named;
+import javax.inject.Singleton;
 
-@Component(role = ReleasePhase.class, hint = "log-updateversions-done-ascii-art")
+@Named("log-updateversions-done-ascii-art")
+@Singleton
 public class AsciiArtUpdateVersionsDoneLoggingPhase extends AbstractAsciiArtLoggingPhase {
     public AsciiArtUpdateVersionsDoneLoggingPhase() {
         super();

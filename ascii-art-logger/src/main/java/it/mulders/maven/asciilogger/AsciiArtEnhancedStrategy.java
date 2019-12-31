@@ -1,15 +1,18 @@
 package it.mulders.maven.asciilogger;
 
 import org.apache.maven.shared.release.strategy.Strategy;
-import org.codehaus.plexus.component.annotations.Component;
-import org.codehaus.plexus.component.annotations.Requirement;
 
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Singleton;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component(role = Strategy.class, description = "ASCII art enhanced strategy", hint = "ascii-art-enhanced-strategy")
+@Named("ascii-art-enhanced-strategy")
+@Singleton
 public class AsciiArtEnhancedStrategy implements Strategy {
-    @Requirement(hint = "default")
+    @Named("default")
+    @Inject
     Strategy defaultStrategy;
 
     @Override

@@ -19,8 +19,8 @@ package it.mulders.maven.asciilogger;
  * under the License.
  */
 
-import org.codehaus.plexus.component.annotations.Component;
-
+import javax.inject.Named;
+import javax.inject.Singleton;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Font;
@@ -36,7 +36,8 @@ import static java.util.stream.Collectors.toList;
  * @see <a href="https://www.baeldung.com/ascii-art-in-java">ASCII Art in Java by Chris Oberle at Baeldung</a>
  * @author Maarten Mulders
  */
-@Component(role = AsciiArtGenerator.class, hint = "ascii-art-generator")
+@Named("ascii-art-generator")
+@Singleton
 public class AsciiArtGenerator {
     private static final int HEIGHT = 20;
     private static final int WIDTH = 150;

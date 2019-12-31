@@ -109,36 +109,15 @@
                 </plugin>
 
                 <plugin>
-                    <groupId>org.codehaus.plexus</groupId>
-                    <artifactId>plexus-component-metadata</artifactId>
-                    <version>2.1.0</version>
+                    <groupId>org.eclipse.sisu</groupId>
+                    <artifactId>sisu-maven-plugin</artifactId>
+                    <version>0.3.4</version>
                     <executions>
-                        <!-- Processes Plexus annotations in Java classes to generate META-INF/plexus/components.xml -->
                         <execution>
-                            <id>generate-metadata</id>
+                            <id>generate-index</id>
                             <goals>
-                                <goal>generate-metadata</goal>
+                                <goal>main-index</goal>
                             </goals>
-                            <configuration>
-                                <extractors>
-                                    <extractor>class</extractor>
-                                </extractors>
-                            </configuration>
-                        </execution>
-                        <!-- Merge generated META-INF/plexus/components.xml with hand-written fragments -->
-                        <execution>
-                            <id>merge-metadata</id>
-                            <phase>process-classes</phase>
-                            <goals>
-                                <goal>merge-metadata</goal>
-                            </goals>
-                            <configuration>
-                                <output>${project.build.outputDirectory}/META-INF/plexus/components.xml</output>
-                                <descriptors>
-                                    <descriptor>${project.build.outputDirectory}/META-INF/plexus/components.xml</descriptor>
-                                    <descriptor>src/main/components-fragment.xml</descriptor>
-                                </descriptors>
-                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
