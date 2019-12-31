@@ -21,15 +21,13 @@ package it.mulders.maven.asciilogger.phases;
 
 import it.mulders.maven.asciilogger.AsciiArtGenerator;
 import org.apache.maven.project.MavenProject;
-import org.apache.maven.shared.release.ReleaseExecutionException;
-import org.apache.maven.shared.release.ReleaseFailureException;
 import org.apache.maven.shared.release.ReleaseResult;
 import org.apache.maven.shared.release.config.ReleaseDescriptor;
 import org.apache.maven.shared.release.env.ReleaseEnvironment;
 import org.apache.maven.shared.release.phase.AbstractReleasePhase;
 import org.apache.maven.shared.release.phase.ReleasePhase;
-import org.codehaus.plexus.component.annotations.Requirement;
 
+import javax.inject.Inject;
 import java.util.List;
 
 import static org.apache.maven.shared.release.ReleaseResult.SUCCESS;
@@ -39,7 +37,7 @@ import static org.apache.maven.shared.release.ReleaseResult.SUCCESS;
  * @author Maarten Mulders
  */
 public abstract class AbstractAsciiArtLoggingPhase extends AbstractReleasePhase implements ReleasePhase {
-    @Requirement
+    @Inject
     AsciiArtGenerator asciiArtGenerator;
 
     String message;
