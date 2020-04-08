@@ -34,7 +34,7 @@ Then configure the Maven Release Plugin as follows:
         <dependency>
             <groupId>it.mulders.maven</groupId>
             <artifactId>ascii-art-logger</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.6</version>
         </dependency>
     </dependencies>
     <configuration>
