@@ -18,21 +18,21 @@ public class AsciiArtEnhancedStrategy implements Strategy {
     @Override
     public List<String> getPreparePhases() {
         final List<String> phases = new ArrayList<>(defaultStrategy.getPreparePhases());
-        phases.add("log-prepare-done-ascii-art");
+        phases.add(phases.size() - 1, "log-prepare-done-ascii-art");
         return phases;
     }
 
     @Override
     public List<String> getPerformPhases() {
         final List<String> phases = new ArrayList<>(defaultStrategy.getPerformPhases());
-        phases.add("log-perform-done-ascii-art");
+        phases.add(phases.size() - 1, "log-perform-done-ascii-art");
         return phases;
     }
 
     @Override
     public List<String> getBranchPhases() {
         final List<String> phases = new ArrayList<>(defaultStrategy.getPerformPhases());
-        phases.add("log-branch-done-ascii-art");
+        phases.add(phases.size() - 1, "log-branch-done-ascii-art");
         return phases;
     }
 
@@ -44,7 +44,7 @@ public class AsciiArtEnhancedStrategy implements Strategy {
     @Override
     public List<String> getUpdateVersionsPhases() {
         final List<String> phases = new ArrayList<>(defaultStrategy.getPerformPhases());
-        phases.add("log-updateversions-done-ascii-art");
+        phases.add(phases.size() - 1, "log-updateversions-done-ascii-art");
         return phases;
     }
 }
