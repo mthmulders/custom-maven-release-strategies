@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>it.mulders.maven</groupId>
     <artifactId>custom-maven-release-strategies</artifactId>
-    <version>0.0.6-SNAPSHOT</version>
+    <version>0.0.6</version>
     <packaging>pom</packaging>
 
     <name>Custom Release Strategies</name>
@@ -12,7 +12,7 @@
     <scm>
         <connection>scm:git:https://github.com/mthmulders/custom-maven-release-strategies.git</connection>
         <developerConnection>scm:git:git@github.com:mthmulders/custom-maven-release-strategies.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>v0.0.6</tag>
   </scm>
 
     <modules>
