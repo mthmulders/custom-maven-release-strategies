@@ -1,0 +1,39 @@
+name: SonarCloud analysis
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sonarcloud:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+
+      - name: Set up cache for ~./m2/repository
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: custom-maven-release-strategies-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            custom-maven-release-strategies
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3.11.0
+        with:
+          java-version: 11
+          distribution: 'adopt'
+          check-latest: true
+
+      - name: SonarCloud Scan
+        run: |
+          mvn -B -Dsonar.login=$SONAR_TOKEN --no-transfer-progress verify sonar:sonar
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
