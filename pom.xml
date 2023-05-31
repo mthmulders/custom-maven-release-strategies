@@ -97,13 +97,16 @@
                         <dependency>
                             <groupId>it.mulders.stryker</groupId>
                             <artifactId>pit-dashboard-reporter</artifactId>
-                            <version>${project.version}</version>
+                            <version>0.2.1</version>
                         </dependency>
                     </dependencies>
                     <configuration>
                         <outputFormats>
                             <format>stryker-dashboard</format>
                         </outputFormats>
+                        <pluginConfiguration>
+                            <stryker.moduleName>${project.artifactId}</stryker.moduleName>
+                        </pluginConfiguration>
                     </configuration>
                 </plugin>
 
