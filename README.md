@@ -8,6 +8,9 @@
 
 ## Using it
 
+Note that using this project requires Java 11.
+If you chose to use it as a reference for building your own, you're free to choose the version of Java you want for your project.
+
 Add the following to the root of your projects `pom.xml`:
 
 ```xml
