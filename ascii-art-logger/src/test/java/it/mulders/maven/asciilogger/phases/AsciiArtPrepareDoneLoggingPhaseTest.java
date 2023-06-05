@@ -1,11 +1,11 @@
 package it.mulders.maven.asciilogger.phases;
 
 import it.mulders.maven.asciilogger.AsciiArtGenerator;
+import nl.altindag.log.LogCaptor;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.shared.release.ReleaseResult;
 import org.apache.maven.shared.release.config.ReleaseDescriptor;
 import org.apache.maven.shared.release.env.ReleaseEnvironment;
-import org.codehaus.plexus.logging.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,21 +16,19 @@ import static java.util.Collections.singletonList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 class AsciiArtPrepareDoneLoggingPhaseTest {
+    private final LogCaptor logCaptor = LogCaptor.forClass(AsciiArtPrepareDoneLoggingPhase.class);
     private static final String BANNER = "Banner";
 
     private AsciiArtGenerator asciiArtGenerator = mock(AsciiArtGenerator.class);
-    private Logger logger = mock(Logger.class);
 
     private AsciiArtPrepareDoneLoggingPhase phase = new AsciiArtPrepareDoneLoggingPhase();
 
     @BeforeEach
     public void injectMocks() {
         phase.asciiArtGenerator = asciiArtGenerator;
-        phase.enableLogging(logger);
         when(asciiArtGenerator.generate(anyString())).thenReturn(singletonList(BANNER));
     }
 
@@ -59,7 +57,7 @@ class AsciiArtPrepareDoneLoggingPhaseTest {
         final ReleaseResult result = phase.execute(descriptor, environment, projects);
 
         // Assert
-        verify(logger).info(BANNER);
+        assertThat(logCaptor.getInfoLogs()).contains(BANNER);
         assertThat(result.getOutput().split("\\n")).hasSizeGreaterThan(0);
     }
 
