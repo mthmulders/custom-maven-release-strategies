@@ -7,6 +7,11 @@
 [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2Fmthmulders%2Fcustom-maven-release-strategies%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/mthmulders/custom-maven-release-strategies/main)
 [![Download](https://api.bintray.com/packages/mthmulders/open-source/custom-release-strategies/images/download.svg) ](https://bintray.com/mthmulders/open-source/custom-release-strategies/_latestVersion)
 
+## ⚠️ Project status
+This project is a showcase for my blog post [Customise the Maven Release process](https://maarten.mulders.it/2020/01/customise-the-maven-release-process/).
+I do not actively maintain it.
+It's probably not production quality - don't let the badges above fool you.
+
 ## Using it
 
 Add the following to the root of your projects `pom.xml`:
